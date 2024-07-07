@@ -4,17 +4,106 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuestBasedDialogueSystemTool"
+        xmlns:views="clr-namespace:QuestBasedDialogueSystemTool.Views"
+        xmlns:viewModels="clr-namespace:QuestBasedDialogueSystemTool.ViewModels"
         mc:Ignorable="d"
-        Title="Quest-Based Dialogue System Tool" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Quest-Based Dialogue System Tool" MinHeight="619" MinWidth="1100" Height="619" Width="1100" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Calibri"/>
+        </Style>
+        <Style x:Key="NavigationListStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="{StaticResource DarkerBlue}"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="SelectedIndex" Value="0"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderThickness="0"
+                        Padding="0"
+                        SnapsToDevicePixels="true">
+                            <ScrollViewer Padding="{TemplateBinding Padding}"
+                                    Focusable="false">
+                                <ItemsPresenter SnapsToDevicePixels=
+                                    "{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="NavigationListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="ToolTip" Value="{Binding Name}"/>
+            <Setter Property="Margin" Value="-1"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth, Converter={StaticResource AspectRatioConvertor}, ConverterParameter=1}"/>
+            <Setter Property="HorizontalContentAlignment" 
+            Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" 
+            Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="ListBoxItemBorder"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}"
+                        SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment=
+                                    "{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment=
+                                    "{TemplateBinding VerticalContentAlignment}"
+                                    SnapsToDevicePixels=
+                                    "{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="ListBoxItemBorder" Property="Background" 
+                         Value="CornflowerBlue"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="ListBoxItemBorder" 
+                         Value="CornflowerBlue"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" 
+                         Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <TextBlock Text="Quests" FontSize="20" FontWeight="Bold" />
-            <TextBlock Text="Quests" FontSize="20" FontWeight="Bold" />
-            <TextBlock Text="Quests" FontSize="20" FontWeight="Bold" />
-        </StackPanel>
+        <ListBox Grid.Column="0" 
+                 Style="{StaticResource NavigationListStyle}" 
+                 ItemContainerStyle="{StaticResource NavigationListBoxItemStyle}"
+                 ItemsSource="{Binding NavigationButtons}"
+                 SelectedIndex="{Binding SelectedNavigationButtonIndex}"
+                 >
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type viewModels:NavigationButtonViewModel}">
+                    <views:NavigationButtonView/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
