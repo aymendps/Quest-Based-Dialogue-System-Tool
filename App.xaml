@@ -16,7 +16,7 @@
         <!--#endregion-->
         
         <!--#region Data Templates-->
-        <DataTemplate x:Key="DT_NavigationButtonView" DataType="{x:Type viewModels:NavigationButtonViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:NavigationButtonViewModel}">
             <views:NavigationButtonView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:NPCsViewModel}">

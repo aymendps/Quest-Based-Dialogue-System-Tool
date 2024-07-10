@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MahApps.Metro.IconPacks;  
 
 namespace QuestBasedDialogueSystemTool.ViewModels
 {
@@ -46,21 +47,21 @@ namespace QuestBasedDialogueSystemTool.ViewModels
 
             _navigationButtons =
             [
-                new("Quests", "/Assets/Icons/quest.png", true, (object parameter) =>
+                new("Quests", PackIconGameIconsKind.ScrollUnfurled, true, (object parameter) =>
                 {
                     if(_selectedNavigationButtonIndex == 0) return;
 
                     SelectedNavigationButtonIndex = 0;
                     SelectedContentViewModel = new QuestsViewModel();
                 }),
-                new("NPCs", "/Assets/Icons/npc.png", false, (object parameter) =>
+                new("NPCs", PackIconGameIconsKind.Backup, false, (object parameter) =>
                 {
                     if(_selectedNavigationButtonIndex == 1) return;
 
                     SelectedNavigationButtonIndex = 1;
                     SelectedContentViewModel = new NPCsViewModel();
                 }),
-                new("Dialogues", "/Assets/Icons/dialogue.png", false, (object parameter) =>
+                new("Dialogues", PackIconGameIconsKind.Talk, false, (object parameter) =>
                 {
                     if(_selectedNavigationButtonIndex == 2) return;
 

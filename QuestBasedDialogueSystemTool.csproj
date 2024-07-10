@@ -9,19 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Icons\dialogue.png" />
-    <None Remove="Assets\Icons\npc.png" />
-    <None Remove="Assets\Icons\quest.png" />
     <None Remove="Views\quest.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Icons\dialogue.png" />
-    <Resource Include="Assets\Icons\npc.png" />
-    <Resource Include="Assets\Icons\quest.png" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="5.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
   </ItemGroup>
 

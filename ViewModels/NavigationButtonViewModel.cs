@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MahApps.Metro.IconPacks;
 
 namespace QuestBasedDialogueSystemTool.ViewModels
 {
@@ -18,9 +19,9 @@ namespace QuestBasedDialogueSystemTool.ViewModels
             get => _model.Name;
         }
 
-        public string IconPath
+        public PackIconGameIconsKind Icon
         {
-            get => _model.IconPath;
+            get => _model.Icon;
         }
 
         public bool IsSelected
@@ -38,9 +39,9 @@ namespace QuestBasedDialogueSystemTool.ViewModels
         /// </summary>
         public ICommand NavigateCommand { get; }
 
-        public NavigationButtonViewModel(string name, string iconPath, bool isSelected, Action<object> navigateAction)
+        public NavigationButtonViewModel(string name, PackIconGameIconsKind icon, bool isSelected, Action<object> navigateAction)
         {
-            _model = new NavigationButtonModel(name, iconPath, isSelected);
+            _model = new NavigationButtonModel(name, icon, isSelected);
             NavigateCommand = new RelayCommand<object>(navigateAction);
         }
     }

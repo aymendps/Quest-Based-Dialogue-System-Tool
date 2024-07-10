@@ -100,7 +100,6 @@
                  Style="{StaticResource NavigationListStyle}" 
                  ItemContainerStyle="{StaticResource NavigationListBoxItemStyle}"
                  ItemsSource="{Binding NavigationButtons}"
-                 ItemTemplate="{StaticResource DT_NavigationButtonView}"
                  SelectedIndex="{Binding SelectedNavigationButtonIndex}"
                  />
         <ContentControl Grid.Column="1" Content="{Binding SelectedContentViewModel}"/>

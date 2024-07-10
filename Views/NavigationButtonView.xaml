@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:QuestBasedDialogueSystemTool.Views"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
@@ -32,9 +33,13 @@
         </Style>
     </UserControl.Resources>
     <Button Style="{StaticResource NavigationButtonStyle}" Command="{Binding NavigateCommand}">
-        <Image Width="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=ActualWidth, Converter={StaticResource AspectRatioConvertor}, ConverterParameter=0.5}"
+        <!--<Image Width="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=ActualWidth, Converter={StaticResource AspectRatioConvertor}, ConverterParameter=0.5}"
                    Source="{Binding IconPath}"
                    RenderOptions.BitmapScalingMode="HighQuality"
-                   RenderOptions.EdgeMode="Aliased"/>
+                   RenderOptions.EdgeMode="Aliased"/>-->
+        <iconPacks:PackIconGameIcons Kind="{Binding Icon}" 
+                                     Foreground="White"
+                                     Width="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=ActualWidth, Converter={StaticResource AspectRatioConvertor}, ConverterParameter=0.5}"
+                                     Height="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=ActualHeight, Converter={StaticResource AspectRatioConvertor}, ConverterParameter=0.5}"/>
     </Button>
 </UserControl>
