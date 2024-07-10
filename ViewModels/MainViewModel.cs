@@ -41,23 +41,24 @@ namespace QuestBasedDialogueSystemTool.ViewModels
 
         public MainViewModel()
         {
-            _selectedContentViewModel = new NPCsViewModel();
+            _selectedContentViewModel = new QuestsViewModel();
+            _selectedNavigationButtonIndex = 0;
 
-            _navigationButtons = new ObservableCollection<NavigationButtonViewModel>
-            {
-                new("NPCs", "/Assets/Icons/npc.png", true, (object parameter) =>
+            _navigationButtons =
+            [
+                new("Quests", "/Assets/Icons/quest.png", true, (object parameter) =>
                 {
                     if(_selectedNavigationButtonIndex == 0) return;
 
-                    SelectedNavigationButtonIndex = 0;  
-                    SelectedContentViewModel = new NPCsViewModel();
+                    SelectedNavigationButtonIndex = 0;
+                    SelectedContentViewModel = new QuestsViewModel();
                 }),
-                new("Quests", "/Assets/Icons/quest.png", false, (object parameter) =>
+                new("NPCs", "/Assets/Icons/npc.png", false, (object parameter) =>
                 {
                     if(_selectedNavigationButtonIndex == 1) return;
 
                     SelectedNavigationButtonIndex = 1;
-                    SelectedContentViewModel = new QuestsViewModel();
+                    SelectedContentViewModel = new NPCsViewModel();
                 }),
                 new("Dialogues", "/Assets/Icons/dialogue.png", false, (object parameter) =>
                 {
@@ -66,7 +67,7 @@ namespace QuestBasedDialogueSystemTool.ViewModels
                     SelectedNavigationButtonIndex = 2;
                     SelectedContentViewModel = new DialoguesViewModel();
                 }),
-            };
+            ];
         }
 
         private void UpdateNavigationButtons()
