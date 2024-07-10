@@ -2,7 +2,7 @@
 
 namespace QuestBasedDialogueSystemTool.ViewModels
 {
-    class BaseViewModel : INotifyPropertyChanged
+    abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
