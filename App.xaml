@@ -3,9 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:QuestBasedDialogueSystemTool"
              xmlns:converters="clr-namespace:QuestBasedDialogueSystemTool.Converters"
+             xmlns:views="clr-namespace:QuestBasedDialogueSystemTool.Views"
+             xmlns:viewModels="clr-namespace:QuestBasedDialogueSystemTool.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!--#region Solid Color Brushes-->
         <SolidColorBrush x:Key="DarkerBlue" Color="#FF000040" />
+        <!--#endregion-->
+        
+        <!--#region Converters-->
         <converters:AspectRatioConvertor x:Key="AspectRatioConvertor"/>
+        <!--#endregion-->
+        
+        <!--#region Data Templates-->
+        <DataTemplate x:Key="DT_NavigationButtonView" DataType="{x:Type viewModels:NavigationButtonViewModel}">
+            <views:NavigationButtonView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:NPCsViewModel}">
+            <views:NPCsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:QuestsViewModel}">
+            <views:QuestsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:DialoguesViewModel}">
+            <views:DialoguesView/>
+        </DataTemplate>
+        <!--#endregion-->
     </Application.Resources>
 </Application>

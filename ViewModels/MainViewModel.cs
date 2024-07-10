@@ -28,25 +28,43 @@ namespace QuestBasedDialogueSystemTool.ViewModels
             }
         }
 
+        private BaseViewModel _selectedContentViewModel;
+        public BaseViewModel SelectedContentViewModel
+        {
+            get => _selectedContentViewModel;
+            set
+            {
+                _selectedContentViewModel = value;
+                OnPropertyChanged(nameof(SelectedContentViewModel));
+            }
+        }
+
         public MainViewModel()
         {
-            Trace.WriteLine("MainViewModel created");
+            _selectedContentViewModel = new NPCsViewModel();
+
             _navigationButtons = new ObservableCollection<NavigationButtonViewModel>
             {
                 new("NPCs", "/Assets/Icons/npc.png", true, (object parameter) =>
                 {
-                    Trace.WriteLine("Navigate to NPCs");
+                    if(_selectedNavigationButtonIndex == 0) return;
+
                     SelectedNavigationButtonIndex = 0;  
+                    SelectedContentViewModel = new NPCsViewModel();
                 }),
                 new("Quests", "/Assets/Icons/quest.png", false, (object parameter) =>
                 {
-                    Trace.WriteLine("Navigate to Quests");
+                    if(_selectedNavigationButtonIndex == 1) return;
+
                     SelectedNavigationButtonIndex = 1;
+                    SelectedContentViewModel = new QuestsViewModel();
                 }),
                 new("Dialogues", "/Assets/Icons/dialogue.png", false, (object parameter) =>
                 {
-                    Trace.WriteLine("Navigate to Dialogues");
+                    if(_selectedNavigationButtonIndex == 2) return;
+
                     SelectedNavigationButtonIndex = 2;
+                    SelectedContentViewModel = new DialoguesViewModel();
                 }),
             };
         }

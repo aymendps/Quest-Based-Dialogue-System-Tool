@@ -88,22 +88,21 @@
         </Style>
 
     </Window.Resources>
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="12*"/>
         </Grid.ColumnDefinitions>
         <ListBox Grid.Column="0" 
                  Style="{StaticResource NavigationListStyle}" 
                  ItemContainerStyle="{StaticResource NavigationListBoxItemStyle}"
                  ItemsSource="{Binding NavigationButtons}"
+                 ItemTemplate="{StaticResource DT_NavigationButtonView}"
                  SelectedIndex="{Binding SelectedNavigationButtonIndex}"
-                 >
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type viewModels:NavigationButtonViewModel}">
-                    <views:NavigationButtonView/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                 />
+        <ContentControl Grid.Column="1" Content="{Binding SelectedContentViewModel}"/>
     </Grid>
 </Window>
